@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ParticipantsNotification < Noticed::Base
   deliver_by :database
 

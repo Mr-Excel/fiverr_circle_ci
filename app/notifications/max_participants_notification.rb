@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MaxParticipantsNotification < Noticed::Base
   deliver_by :database
 
@@ -5,7 +7,7 @@ class MaxParticipantsNotification < Noticed::Base
 
   # Define helper methods to make rendering easier.
   def message
-    "One of your events has reached the maximum number of participants."
+    'One of your events has reached the maximum number of participants.'
   end
 
   def url

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ParticipationPolicy < ApplicationPolicy
   def index?
     record.organizer == user
@@ -10,5 +12,4 @@ class ParticipationPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
-
 end

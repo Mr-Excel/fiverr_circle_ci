@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
-  
-  root "events#index"
-  
+
+  root 'events#index'
+
   # Errors
-  match "/403", to: "errors#forbidden", via: :all
-  match "/404", to: "errors#not_found", via: :all
-  match "/500", to: "errors#internal_server_error", via: :all
-  
+  match '/403', to: 'errors#forbidden', via: :all
+  match '/404', to: 'errors#not_found', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
+
   # Notifications / Messages
   resources :notifications, only: [:index]
-  
+
   # Events / Participations
   resources :events, shallow: true do
-    resources :participations, only: [:index, :create, :update, :destroy]
+    resources :participations, only: %i[index create update destroy]
   end
 
   post 'events/notify', to: 'participations#notify', as: 'notify_participants'
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
   # Chat
   namespace :chat do
     resources :rooms, shallow: true do
-      resources :messages, as: "chat_messages"
+      resources :messages, as: 'chat_messages'
     end
   end
 end

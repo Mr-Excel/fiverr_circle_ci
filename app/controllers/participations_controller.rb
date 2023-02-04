@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ParticipationsController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized, except: [:create]
@@ -10,17 +12,17 @@ class ParticipationsController < ApplicationController
 
   def create
     event = Event.find(params[:event_id])
-    @participation = Participation.new(user: current_user, event: event)
+    @participation = Participation.new(user: current_user, event:)
 
     if @participation.save
       if event.participants.count == event.max_participants
-        MaxParticipantsNotification.with(event: event).deliver(event.organizer)
+        MaxParticipantsNotification.with(event:).deliver(event.organizer)
       end
 
       redirect_to @participation.event
     else
       @event = @participation.event
-      render "events/show" , status: :unprocessable_entity
+      render 'events/show', status: :unprocessable_entity
     end
   end
 
@@ -38,7 +40,7 @@ class ParticipationsController < ApplicationController
 
   def destroy
     @participation = Participation.find(params[:id]).destroy
-    
+
     authorize @participation
 
     redirect_to @participation.event
@@ -49,7 +51,6 @@ class ParticipationsController < ApplicationController
 
     authorize event
 
-    ParticipantsNotification.with(event: event, content: params[:content]).deliver(event.participants)
+    ParticipantsNotification.with(event:, content: params[:content]).deliver(event.participants)
   end
-
 end

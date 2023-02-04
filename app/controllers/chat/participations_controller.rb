@@ -1,2 +1,6 @@
-class Chat::ParticipationsController < ApplicationController
+# frozen_string_literal: true
+
+module Chat
+  class ParticipationsController < ApplicationController
+  end
 end

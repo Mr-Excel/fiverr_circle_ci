@@ -1,7 +1,11 @@
-require "test_helper"
+# frozen_string_literal: true
 
-class Chat::RoomTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+require 'test_helper'
+
+module Chat
+  class RoomTest < ActiveSupport::TestCase
+    # test "the truth" do
+    #   assert true
+    # end
+  end
 end
