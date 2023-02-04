@@ -9,7 +9,8 @@ development:
 
 test:
   <<: *default
-  database: dbg_events_test
+  adapter: sqlite3
+  database: db/dbg_events_test.sqlite3
 
 production:
   <<: *default
