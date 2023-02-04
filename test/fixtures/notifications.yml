@@ -3,13 +3,17 @@
 one:
   recipient: one
   recipient_type: Recipient
-  type: 
-  params: 
+  recipient_id: 12
+  type: "Test"
+  params:
+    :id => 200: null
   read_at: 2022-04-30 17:10:57
 
 two:
   recipient: two
   recipient_type: Recipient
-  type: 
-  params: 
+  recipient_id: 13
+  type: "Test"
+  params:
+    :id => 200: null
   read_at: 2022-04-30 17:10:57
