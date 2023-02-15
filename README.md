@@ -3,6 +3,7 @@
 Ruby on Rails university project.
 
 ## TODO
+
 - [x] ~~Registrazione di utenti~~
 - [x] ~~Registrazione di organizzatori~~
 - [x] ~~Permettere ad organizzatori di creare eventi~~
@@ -28,6 +29,7 @@ The project is dockerized so you only need `Docker` and `docker-compose`.
 ## Configuration
 
 When creating new files inside the container with the `rails` command, they will be owned by `root`, so you need to fix the permissions for your editor to be able to edit them:
+
 ```bash
 sudo chown -R $USER:$USER .
 ```
@@ -37,6 +39,7 @@ sudo chown -R $USER:$USER .
 ## Database initialization
 
 Migrate the database:
+
 ```bash
 docker exec -it <container_name> rails db:migrate
 ```
@@ -48,19 +51,27 @@ docker exec -it <container_name> rails db:migrate
 ## Deployment instructions
 
 To start the app in development:
+
 ```bash
 docker-compose up -d
 ```
+
 To start the app in test:
+
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose-test.yml up -d
 ```
+
 To start the app in production:
+
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose-production.yml up -d
 ```
 
 Changes to the Gemfile or the Dockerfile, should be the only times you’ll need to:
+
 ```bash
 docker-compose build
 ```
+
+bundle exec rubocop -A
