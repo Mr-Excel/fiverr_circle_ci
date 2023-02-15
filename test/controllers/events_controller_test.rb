@@ -48,6 +48,11 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_not_nil assigns(:events)
   end
 
+  test 'should not save article without name' do
+    event = Event.new
+    assert_not event.save
+  end
+
   test 'should delete event' do
     before = Event.count
     delete "/events/#{Event.last.id}"
