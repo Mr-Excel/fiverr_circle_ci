@@ -3,9 +3,8 @@
 require 'test_helper'
 
 class ParticipationsControllerTest < ActionDispatch::IntegrationTest
-   include Devise::Test::IntegrationHelpers
+  include Devise::Test::IntegrationHelpers
   include Warden::Test::Helpers
-
 
   # test 'should get index' do
   #   # user = FactoryBot.create(:user)
@@ -54,7 +53,7 @@ class ParticipationsControllerTest < ActionDispatch::IntegrationTest
       longitude: 12.211213
     }
     event = Event.create(new_event)
-    post '/events/'+event.id.to_s+'/participations'
+    post "/events/#{event.id}/participations"
     after = Participation.count
     logout(:user)
     assert_equal after, before + 1
@@ -80,7 +79,7 @@ class ParticipationsControllerTest < ActionDispatch::IntegrationTest
     event = Event.create(new_event)
     Participation.create(event_id: event.id, user_id: user.id)
     before = Participation.where(is_banned: true).count
-    put '/participations/'+event.id.to_s
+    put "/participations/#{event.id}"
     after = Participation.where(is_banned: true).count
     logout(:user)
     assert_equal after, before + 1
@@ -111,5 +110,4 @@ class ParticipationsControllerTest < ActionDispatch::IntegrationTest
     logout(:user)
     assert_equal after, before - 1
   end
-
 end

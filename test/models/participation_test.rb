@@ -5,7 +5,7 @@ require 'test_helper'
 class ParticipationTest < ActiveSupport::TestCase
   include Devise::Test::IntegrationHelpers
   include Warden::Test::Helpers
-  test "should not enter duplicate user" do
+  test 'should not enter duplicate user' do
     user = FactoryBot.create(:user)
     login_as(user, scope: :user)
     new_event = {
@@ -23,8 +23,8 @@ class ParticipationTest < ActiveSupport::TestCase
       longitude: 12.211213
     }
     event = Event.create(new_event)
-    participation_enteries1 = Participation.create(user_id: user.id, event_id: event.id)
+    Participation.create(user_id: user.id, event_id: event.id)
     participation_enteries2 = Participation.create(user_id: user.id, event_id: event.id)
-    assert_equal( {:user_id=>["has already been taken"]}, participation_enteries2.errors.messages )
+    assert_equal({ user_id: ['has already been taken'] }, participation_enteries2.errors.messages)
   end
 end

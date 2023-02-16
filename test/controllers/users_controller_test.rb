@@ -24,9 +24,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       longitude: 12.211213
     }
     event = Event.create(new_event)
-    participtation = Participation.create(event_id: event.id, user_id: user.id, is_banned: false)
+    Participation.create(event_id: event.id, user_id: user.id, is_banned: false)
     before = Participation.where(is_banned: false).count
-    post '/blacklist/'+user.id.to_s
+    post "/blacklist/#{user.id}"
     after = Participation.where(is_banned: false).count
     assert_equal after, before - 1
   end
@@ -49,11 +49,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       longitude: 12.211213
     }
     event = Event.create(new_event)
-    participtation = Participation.create(event_id: event.id, user_id: user.id, is_banned: true)
+    Participation.create(event_id: event.id, user_id: user.id, is_banned: true)
     before = Participation.where(is_banned: true).count
-    delete '/blacklist/'+user.id.to_s
+    delete "/blacklist/#{user.id}"
     after = Participation.where(is_banned: true).count
-    assert_equal after, before-1
-  end  
-
+    assert_equal after, before - 1
+  end
 end
