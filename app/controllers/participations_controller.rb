@@ -28,9 +28,7 @@ class ParticipationsController < ApplicationController
 
   def update
     @participation = Participation.find(params[:id])
-
     authorize @participation
-
     if @participation.update(is_banned: !@participation.is_banned)
       redirect_to event_participations_path(@participation.event)
     else
