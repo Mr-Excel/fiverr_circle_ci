@@ -3,9 +3,12 @@
 require 'test_helper'
 
 class ParticipationTest < ActiveSupport::TestCase
+  # Devise & Warden will help in signing in user while testing where we need authentication
   include Devise::Test::IntegrationHelpers
   include Warden::Test::Helpers
+
   test 'should not enter duplicate user' do
+    # it will check user should return error if adding in same event as participant
     user = FactoryBot.create(:user)
     login_as(user, scope: :user)
     new_event = {
@@ -25,6 +28,7 @@ class ParticipationTest < ActiveSupport::TestCase
     event = Event.create(new_event)
     Participation.create(user_id: user.id, event_id: event.id)
     participation_enteries2 = Participation.create(user_id: user.id, event_id: event.id)
+
     assert_equal({ user_id: ['has already been taken'] }, participation_enteries2.errors.messages)
   end
 end

@@ -3,6 +3,7 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+  # Devise & Warden will help in signing in user while testing where we need authentication
   include Devise::Test::IntegrationHelpers
   include Warden::Test::Helpers
 

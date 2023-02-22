@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# generating a same user as organizer
 FactoryBot.define do
   factory :user do
     email { 'test@example.com' }
